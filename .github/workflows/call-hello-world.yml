@@ -1,0 +1,12 @@
+name: Call Hello World
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  greet:
+    uses: ./.github/workflows/reusable-hello-world.yml
+    with:
+      name: Josh
