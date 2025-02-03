@@ -3,7 +3,7 @@ name: Call Hello World
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   greet:
