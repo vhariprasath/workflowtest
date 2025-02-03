@@ -7,6 +7,6 @@ on:
 
 jobs:
   greet:
-    uses: reusable-hello-world.yml
+    uses: reusable-hello-world.yml@master
     with:
       name: Joshha
