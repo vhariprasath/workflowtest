@@ -9,4 +9,4 @@ jobs:
   greet:
     uses: ./.github/workflows/reusable-hello-world.yml
     with:
-      name: Josh
+      name: Joshha
