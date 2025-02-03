@@ -1,13 +1,7 @@
 name: Reusable Hello World
 
 on:
-  workflow_call:
-    inputs:
-      name:
-        description: 'Name to greet'
-        required: false
-        default: 'World'
-        type: string
+  workflow_call
 
 jobs:
   say-hello:
