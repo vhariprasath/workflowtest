@@ -7,6 +7,6 @@ on:
 
 jobs:
   greet:
-    uses: ./reusable-helloworld.yaml
+    uses: ./.github/workflows/reusable-helloworld.yaml
     with:
       name: Joshha
