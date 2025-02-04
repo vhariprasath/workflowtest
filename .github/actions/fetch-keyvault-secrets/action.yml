@@ -13,7 +13,10 @@ runs:
   steps:
     - name: Install Azure PowerShell Module
       run: |
-        Install-Module -Name Az -Force -Scope CurrentUser -AllowClobber
+        Install-Module -Name Az.Accounts -Force -Scope CurrentUser -AllowClobber
+        Install-Module -Name Az.KeyVault -Force -Scope CurrentUser -AllowClobber
+      shell: pwsh
+
       shell: pwsh
 
     - name: Fetch Secrets from Key Vault
