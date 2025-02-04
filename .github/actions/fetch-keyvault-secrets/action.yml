@@ -1,0 +1,22 @@
+name: Fetch Key Vault Secrets
+description: Fetch multiple secrets from Azure Key Vault and set them as environment variables.
+inputs:
+  keyvault-name:
+    description: 'Azure Key Vault name'
+    required: true
+  secret-names:
+    description: 'Comma-separated list of secret names'
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Install Azure PowerShell Module
+      run: |
+        Install-Module -Name Az -Force -Scope CurrentUser -AllowClobber
+      shell: pwsh
+
+    - name: Fetch Secrets from Key Vault
+      run: |
+        pwsh ./fetch-secrets.ps1 -KeyVaultName "${{ inputs.keyvault-name }}" -SecretNames "${{ inputs.secret-names }}"
+      shell: pwsh
