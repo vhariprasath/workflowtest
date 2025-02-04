@@ -3,19 +3,21 @@ param (
     [string]$SecretNames
 )
 
-# Authenticate with Azure (assumes az login already done in GitHub runner)
-if (-not (Get-AzContext)) {
-    Connect-AzAccount -Identity
-}
+# # Authenticate with Azure (assumes az login already done in GitHub runner)
+# if (-not (Get-AzContext)) {
+#     Connect-AzAccount -Identity
+# }
+
+Write-Host "Enter powershell script"
 
 # Split comma-separated secrets
 $SecretArray = $SecretNames -split ','
 
 foreach ($SecretName in $SecretArray) {
+Write-Host $SecretName
     try {
-        $Secret = Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $SecretName -ErrorAction Stop
-        $SecretValue = $Secret.SecretValueText
-
+        $SecretValue = Get-AzKeyVaultSecret -VaultName $KeyVaultName -Name $SecretName -AsPlainText
+        
         if ([string]::IsNullOrEmpty($SecretValue)) {
             Write-Host "⚠️ WARNING: Secret '$SecretName' exists but is empty."
         } else {
