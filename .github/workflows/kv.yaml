@@ -18,7 +18,7 @@ jobs:
          az login
 
       - name: Fetch Secrets from Key Vault
-        uses: ./.github/actions/fetch-keyvault-secrets
+        uses: ./.github/actions/fetch-keyvault-secrets/action.yml
         with:
           keyvault-name: 'hariv-kv'
           secret-names: 'k1,k2'
