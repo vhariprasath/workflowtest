@@ -17,8 +17,6 @@ runs:
         Install-Module -Name Az.KeyVault -Force -Scope CurrentUser -AllowClobber
       shell: pwsh
 
-      shell: pwsh
-
     - name: Fetch Secrets from Key Vault
       run: |
         pwsh "${{ github.action_path }}/fetch-secrets.ps1" -KeyVaultName "${{ inputs.keyvault-name }}" -SecretNames "${{ inputs.secret-names }}"
