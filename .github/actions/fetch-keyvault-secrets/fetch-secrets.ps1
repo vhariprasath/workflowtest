@@ -5,9 +5,8 @@ param (
 
 # Authenticate with Azure (assumes az login already done in GitHub runner)
 if (-not (Get-AzContext)) {
-    Connect-AzAccount
+    Connect-AzAccount -UseDeviceAuthentication
 }
- Connect-AzAccount
 Write-Host "Enter powershell script"
 
 # Split comma-separated secrets
