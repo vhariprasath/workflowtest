@@ -3,10 +3,10 @@ param (
     [string]$SecretNames
 )
 
-# # Authenticate with Azure (assumes az login already done in GitHub runner)
-# if (-not (Get-AzContext)) {
-#     Connect-AzAccount -Identity
-# }
+# Authenticate with Azure (assumes az login already done in GitHub runner)
+if (-not (Get-AzContext)) {
+    Connect-AzAccount
+}
 
 Write-Host "Enter powershell script"
 
