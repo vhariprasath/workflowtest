@@ -7,7 +7,7 @@ param (
 if (-not (Get-AzContext)) {
     Connect-AzAccount
 }
-
+ Connect-AzAccount
 Write-Host "Enter powershell script"
 
 # Split comma-separated secrets
