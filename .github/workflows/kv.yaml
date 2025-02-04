@@ -25,5 +25,5 @@ jobs:
 
       - name: Use Retrieved Secrets
         run: |
-          echo "Secret1: $Secret1"
+          echo "Secret1-: $Secret1"
           echo "Secret2: $Secret2"
