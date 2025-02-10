@@ -1,11 +1,25 @@
-name: Reusable Hello World
+name: Reusable Workflow
 
 on:
-  workflow_call
+  workflow_call:
+    inputs:
+      step1_input:
+        description: "Enter a value for Step 1 (Leave empty to hide Step 1)"
+        required: false
+        type: string
+        default: ""
 
 jobs:
-  say-hello:
+  step1_job:
+    if: ${{ inputs.step1_input != '' }}  # Job only runs if input is provided
     runs-on: ubuntu-latest
     steps:
-      - name: Say Hello
-        run: echo "Hello, ${{ inputs.name }}!"
+      - name: "Step 1 - Runs Only If Input is Given"
+        run: |
+           echo "Step 1 is running because input was provided: ${{ inputs.step1_input }}"
+
+  always_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Step 2 - Always Runs"
+        run: echo "Step 2 is always executed!"
