@@ -10,3 +10,5 @@ on:
 jobs:
   greet:
     uses: ./.github/workflows/reusable-helloworld.yaml
+    with:
+      step1_input: "yes-input"
