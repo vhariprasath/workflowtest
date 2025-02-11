@@ -1,6 +1,7 @@
 name: Reusable Workflow
 
 on:
+  workflow_dispatch:
   workflow_call:
     inputs:
       step1_input:
