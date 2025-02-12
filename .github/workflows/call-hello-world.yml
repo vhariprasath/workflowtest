@@ -11,6 +11,9 @@ jobs:
   call-reusable-workflow:
     runs-on: ubuntu-latest
     steps:
+     
+      - name: Checkout Code
+        uses: actions/checkout@v3
       - name: Pre-step before calling reusable workflow
         run: echo "Preparing environment"
 
