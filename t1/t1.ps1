@@ -33,10 +33,6 @@ Write-Output "Converted Command: $ConvertedCommand"
 $ScriptPath = Resolve-Path "$PSScriptRoot\..\switchoverAutomation\releasePipeline\scripts\adfPipelineRunner.ps1"
 
 # Invoke the script with GitHub Actions variables
-& $ScriptPath `
-    -ResourceGroupName "${{ vars.adf_resourcegroupname }}" `
-    -DataFactoryName "${{ vars.datafactoryname }}" `
-    -PipelineName "${{ vars.activity_check_pipelinename }}"
-
+& $ScriptPath
 
 Write-Output "All scripts executed successfully!"
