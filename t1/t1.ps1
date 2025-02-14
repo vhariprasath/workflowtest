@@ -30,7 +30,7 @@ $ConvertedCommand = $Command -replace 'vars\.([a-zA-Z0-9_]+)', '${{ vars.${1} }}
 Write-Output "Converted Command: $ConvertedCommand"
 
 # Resolve path to adfPipelineRunner.ps1
-$ScriptPath = Resolve-Path "$PSScriptRoot\..\t2\t2.ps1"
+$ScriptPath = Resolve-Path "$PSScriptRoot\..\t2\t2.ps1 -p1 harivtest "
 
 # Invoke the script with GitHub Actions variables
 & $ScriptPath

@@ -1,6 +1,9 @@
 Write-Host "Script 2 called"
 # switchoverAutomation/releasePipeline/scripts/adfPipelineRunner.ps1
-
+# Parameter help description
+param (
+    [string]$p1
+)
 # param (
 #     [string]$ResourceGroupName,
 #     [string]$DataFactoryName,
@@ -10,7 +13,7 @@ Write-Host "Script 2 called"
 Write-Output "Running ADF Pipeline with the following parameters:"
 Write-Output "Resource Group: ResourceGroupName"
 Write-Output "Data Factory: DataFactoryName"
-Write-Output "Pipeline Name: PipelineName"
+Write-Output "Pipeline Name: PipelineName $p1"
 
 # Example: Add actual Azure Data Factory pipeline trigger command here
 # az datafactory pipeline create-run --resource-group $ResourceGroupName --factory-name $DataFactoryName --pipeline-name $PipelineName
