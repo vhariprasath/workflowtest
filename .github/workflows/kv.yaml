@@ -3,7 +3,7 @@ name: Deploy with Key Vault Secrets
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   deploy:
