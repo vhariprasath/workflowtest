@@ -20,16 +20,23 @@ Write-Host "Script 1 executing"
 
 # scripts/script1.ps1
 
-# Convert vars.* to ${{ vars.* }} (Unchanged)
-$Command = "Running pipeline with vars.adf_resourcegroupname and vars.datafactoryname"
+# scripts/script1.ps1
+
+# Define the command with vars.*
+$Command = "../switchoverAutomation/releasePipeline/scripts/adfPipelineRunner.ps1 -ResourceGroupName vars.adf_resourcegroupname -DataFactoryName vars.datafactoryname -PipelineName vars.activity_check_pipelinename"
+
+# Convert 'vars.*' to '${{ vars.* }}'
 $ConvertedCommand = $Command -replace 'vars\.([a-zA-Z0-9_]+)', '${{ vars.${1} }}'
 Write-Output "Converted Command: $ConvertedCommand"
 
-# Dynamically resolve the path to script2.ps1 (one folder up)
-$Script2Path = Resolve-Path "$PSScriptRoot\..\another-folder\script2.ps1"
+# Resolve path to adfPipelineRunner.ps1
+$ScriptPath = Resolve-Path "$PSScriptRoot\..\switchoverAutomation\releasePipeline\scripts\adfPipelineRunner.ps1"
 
-Write-Output "Executing Script 2 from path: $Script2Path"
-& $Script2Path
+# Invoke the script with GitHub Actions variables
+& $ScriptPath `
+    -ResourceGroupName "${{ vars.adf_resourcegroupname }}" `
+    -DataFactoryName "${{ vars.datafactoryname }}" `
+    -PipelineName "${{ vars.activity_check_pipelinename }}"
 
 
 Write-Output "All scripts executed successfully!"
