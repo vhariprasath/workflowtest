@@ -17,7 +17,7 @@ jobs:
     needs: job1  # Runs after job1
     steps:
       - name: Run Job 2
-        run: exit 1  # Simulating failure
+        run: exit 0  # Simulating failure
 
   job3:
     runs-on: ubuntu-latest
