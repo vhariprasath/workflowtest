@@ -19,6 +19,8 @@ jobs:
 
       - name: Call reusable workflow
         uses: ./.github/workflows/reusable-helloworld.yaml
+        with:
+          name: ${{ inputs.name == 'hari' && 'hariworked' || 'haridev-dev' }}
 
       - name: Post-step after calling reusable workflow
         run: echo "Reusable workflow completed"
