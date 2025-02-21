@@ -20,7 +20,7 @@ jobs:
           v1: ${{ inputs.name == 'prod' && 'snowflake-prod' || 'snowflake-dev' }}
           
         run: |
-            echo "Preparing environment : ${{ env.name }}"
+            echo "Preparing environment : $v1"
 
       - name: Call reusable workflow
         uses: ./.github/workflows/reusable-helloworld.yaml
