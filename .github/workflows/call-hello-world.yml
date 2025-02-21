@@ -3,7 +3,7 @@ name: Call Hello World
 on:
   workflow_dispatch:
     inputs:
-      name:
+      NAME:
         description: 'Enter your name'
         required: true
 
