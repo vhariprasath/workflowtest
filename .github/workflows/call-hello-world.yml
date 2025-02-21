@@ -16,12 +16,13 @@ jobs:
         uses: actions/checkout@v3
         
       - name: Pre-step before calling reusable workflow
-        run: echo "Preparing environment"
+        env:
+          v1: ${{ inputs.name == 'prod' && 'snowflake-prod' || 'snowflake-dev' }}
+          
+        run: echo "Preparing environment : ${{ env.name }}"
 
       - name: Call reusable workflow
         uses: ./.github/workflows/reusable-helloworld.yaml
-        with:
-          name: ${{ inputs.name == 'hari' && 'hariworked' || 'haridev-dev' }}
 
       - name: Post-step after calling reusable workflow
         run: echo "Reusable workflow completed"
