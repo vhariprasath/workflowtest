@@ -1,0 +1,13 @@
+name: Caller Workflow
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  call-reusable:
+    uses: ./.github/workflows/reusable.yaml  # Calling the reusable workflow
+    with:
+      environment: dev  # Passing the environment
