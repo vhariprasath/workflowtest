@@ -1,0 +1,22 @@
+name: Hello World Workflow
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  hello_world_1:
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Say Hello from Job 1
+        run: echo "Hello from Job 1 in dev environment!"
+
+  hello_world_2:
+    needs: hello_world_1
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Say Hello from Job 2
+        run: echo "Hello from Job 2 in dev environment!"
