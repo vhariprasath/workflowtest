@@ -1,0 +1,13 @@
+name: CI/CD Pipeline - Master Test
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Job 1
+        run: "printing Job1"
