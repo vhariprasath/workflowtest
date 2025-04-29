@@ -1,0 +1,28 @@
+name: Plutus SQL Deploy Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      Environment:
+        description: "Choose env"
+        type: choice
+        options:
+            - DEV
+            - UAT
+            - PRD
+
+run-name: PlutusSQL-Release-${{inputs.Environment}}-${{ github.run_number }}
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  Deploy:
+    runs-on: windows-latest
+    env:
+      BAT_FILE: ${{ inputs.Environment == 'DEV' && 'sql_batch_dev.bat' || (inputs.Environment == 'UAT' && 'sql_batch_uat.bat' || 'sql_batch_prod.bat') }}
+
+    steps:
+      - name: Run Batch Script
+        shell: cmd
+        run: |
+          \\pue2dvo01\AzureDevOpsRelease\Plutus\Scripts\$env:BAT_FILE
