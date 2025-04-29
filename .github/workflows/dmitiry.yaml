@@ -25,4 +25,4 @@ jobs:
       - name: Run Batch Script
         shell: cmd
         run: |
-          echo \\pue2dvo01\AzureDevOpsRelease\Plutus\Scripts\$env:BAT_FILE
+          echo "\\pue2dvo01\AzureDevOpsRelease\Plutus\Scripts\%BAT_FILE%"
