@@ -11,4 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Run Job 1
-        run: "printing Job1"
+        run: |
+            echo "printing Job1"
