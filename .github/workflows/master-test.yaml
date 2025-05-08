@@ -1,6 +1,7 @@
 name: CI/CD Pipeline - Master Test
 
 on:
+  workflow_call:
   push:
     branches:
       - master
