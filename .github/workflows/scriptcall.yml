@@ -14,13 +14,13 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Run Script 1 (Inside scripts/)
-        shell: pwsh
-        run: ./t1/t1.ps1
+      # - name: Run Script 1 (Inside scripts/)
+      #   shell: pwsh
+      #   run: ./t1/t1.ps1
 
-      - name: Run Script 2 (One Folder Up)
-        shell: pwsh
-        run: ./t2/t2.ps1
+      # - name: Run Script 2 (One Folder Up)
+      #   shell: pwsh
+      #   run: ./t2/t2.ps1
       
       - name: Clean after
         uses: mickem/clean-after-action@v2.0.0
