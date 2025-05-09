@@ -21,3 +21,7 @@ jobs:
       - name: Run Script 2 (One Folder Up)
         shell: pwsh
         run: ./t2/t2.ps1
+      
+      - name: Clean after
+        uses: mickem/clean-after-action@v2.0.0
+          
