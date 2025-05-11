@@ -15,7 +15,7 @@ jobs:
       - name: Upload artifact from specific folder
         uses: actions/upload-artifact@v4
         with:
-          name: t1-artifact-${{ env.BUILD_NUMBER }}
+          name: t1-artifact-${{ github.run_id }}
           path: t1
 
   deploy:
@@ -25,7 +25,7 @@ jobs:
       - name: Download artifact to custom folder
         uses: actions/download-artifact@v4
         with:
-          name: my-artifact
+          name: t1-artifact-${{ github.run_id }}
           path: ./t1
 
       - name: List downloaded files
