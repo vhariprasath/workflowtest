@@ -38,4 +38,4 @@ jobs:
           cd t1
           echo "Current directory: $(pwd)"
           echo "Files:"
-          ls -l
+          ls
