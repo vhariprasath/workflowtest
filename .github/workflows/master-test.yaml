@@ -9,7 +9,8 @@ on:
 jobs:
   job1:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - name: Run Job 1
         run: |
-            echo "printing Job1"
+            echo "printing Job1 ${{ vars.t1 }}"
