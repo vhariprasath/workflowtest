@@ -45,7 +45,7 @@ jobs:
                 git config --global user.email "$email"
                 
                 # Switch to the logs branch
-                git checkout logs/${{ github.ref_name }}
+                #git checkout logs/${{ github.ref_name }}
                 $branchExists = git ls-remote --heads origin logs/master
 
                 if ($branchExists) {
