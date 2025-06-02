@@ -48,8 +48,8 @@ jobs:
                 Copy-Item -Path "inputs\*" -Destination $datetime -Recurse -Force
                 echo "result=$datetime" >> $GITHUB_OUTPUT
                 
-                Remove-Item -Path ".github" -Recurse -Force
-                Remove-Item -Path "inputs" -Recurse -Force
+                # Remove-Item -Path ".github" -Recurse -Force
+                # Remove-Item -Path "inputs" -Recurse -Force
                 git add .
                 git status
                 git commit -m "Archived inputs to $datetime by $env:GITHUB_ACTOR"
