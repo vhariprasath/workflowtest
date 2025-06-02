@@ -50,7 +50,7 @@ jobs:
 
                 if ($branchExists) {
 
-                    git checkout -B logs/master origin/logs/master
+                    git checkout logs/master
                  
                 } else {
                     # Create branch from current master (or another base)
