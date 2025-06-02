@@ -39,6 +39,7 @@ jobs:
       - name: Create timestamp folder and copy inputs
         run: |
                 # Store inputs in a temp folder
+                $datetime = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
                 $tempPath = [System.IO.Path]::Combine($env:TEMP, "inputs_archive_$datetime")
                 New-Item -Path $tempPath -ItemType Directory -Force | Out-Null
                 Copy-Item -Path "inputs\*" -Destination $tempPath -Recurse -Force
