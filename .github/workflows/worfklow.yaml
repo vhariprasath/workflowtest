@@ -95,6 +95,20 @@ jobs:
                 git checkout ${{ github.ref_name }}
                 git status
 
+      - name: Cleanup inputs folder and Commit cleanup with actor identity
+        run: |
+                      Write-Host "Cleaning up inputs folder..."
+                      Get-ChildItem -Path "inputs" -Recurse -Force | Remove-Item -Recurse -Force
+                      New-Item -ItemType Directory -Path "inputs" -Force
+        
+                      $username = "${{ github.actor }}"
+                      $email = "$runner@github.com"
+                      git config --global user.name "$username"
+                      git config --global user.email "$email"
+                      git add inputs
+                      git commit -m "inputs folder cleaned up after workflow"
+                      git push -f origin "${{ github.ref_name }}"
+
       - name: Cleanup
         if: always()
         run: Remove-Item * -Recurse -Force
