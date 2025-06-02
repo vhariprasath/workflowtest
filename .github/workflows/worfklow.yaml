@@ -38,6 +38,13 @@ jobs:
       
       - name: Create timestamp folder and copy inputs
         run: |
+                # Store inputs in a temp folder
+                $tempPath = [System.IO.Path]::Combine($env:TEMP, "inputs_archive_$datetime")
+                New-Item -Path $tempPath -ItemType Directory -Force | Out-Null
+                Copy-Item -Path "inputs\*" -Destination $tempPath -Recurse -Force
+                Write-Host "Archived inputs from $currentBranch to $tempPath"
+
+                
                 # Set Git user based on the GitHub actor
                 $username = "${{ github.actor }}"
                 $email = "$username@github.com"
@@ -58,12 +65,13 @@ jobs:
                     git checkout -b logs/master
                 }
                 
-                # Create a timestamped folder
-                $datetime = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
-                New-Item -Path $datetime -ItemType Directory -Force
+                # # Create a timestamped folder
+                # $datetime = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+                # New-Item -Path $datetime -ItemType Directory -Force
                 
-                # Copy contents from 'inputs' to the new timestamped folder
-                Copy-Item -Path "inputs\*" -Destination $datetime -Recurse -Force
+                # # Copy contents from 'inputs' to the new timestamped folder
+                # Copy-Item -Path "inputs\*" -Destination $datetime -Recurse -Force
+
                 
                 # Output the result path to GitHub Actions
                 "result=$datetime" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
@@ -71,6 +79,10 @@ jobs:
                 # Optionally remove inputs and .github if needed
                 # Remove-Item -Path ".github" -Recurse -Force
                 # Remove-Item -Path "inputs" -Recurse -Force
+
+                # Copy from temp folder into the repo
+                New-Item -Path $datetime -ItemType Directory -Force | Out-Null
+                Copy-Item -Path "$tempPath\*" -Destination $datetime -Recurse -Force
                 
                 # Stage, commit, and push changes to the logs branch
                 git add .
