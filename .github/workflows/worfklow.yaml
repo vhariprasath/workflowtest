@@ -46,6 +46,15 @@ jobs:
                 
                 # Switch to the logs branch
                 git checkout logs/${{ github.ref_name }}
+                $branchExists = git ls-remote --heads origin logs/master
+
+                if ($branchExists) {
+                    git fetch origin logs/master
+                 
+                } else {
+                    # Create branch from current master (or another base)
+                    git checkout -b logs/master
+                }
                 
                 # Create a timestamped folder
                 $datetime = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
