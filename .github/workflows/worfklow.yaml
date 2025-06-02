@@ -1,0 +1,62 @@
+name: Plutus SQL Deploy Pipeline
+
+on:
+  workflow_dispatch:
+    inputs:
+      Environment:
+        description: "Choose env"
+        type: choice
+        options:
+            - DEV
+            - UAT
+            - PRD
+
+run-name: PlutusSQL-Release-${{inputs.Environment}}-${{ github.run_number }}
+permissions:
+  id-token: write
+  contents: write
+jobs:
+  Deploy:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+           token: ${{ secrets.GITHUB_TOKEN }}
+           clean: true
+
+
+      - name: Run SQL scripts from shared path
+        shell: cmd
+        env:
+          DATABASE_SERVER: DUE2SQL04\AP1DEV
+          DATABASE_NAME: master
+        run: |
+          for %%F in ("inputs\*.sql") do (
+            echo Executing Script: %%F
+          )
+      
+      - name: Create timestamp folder and copy inputs
+        run: |
+                $username = "${{ github.actor }}"
+                $email = "$runner@github.com"
+                git config --global user.name "$username"
+                git config --global user.email "$email"
+                git checkout logs/${{ github.ref_name }}
+                $datetime = Get-Date -Format "yyyy-MM-dd_HH-mm-ss"
+                New-Item -Path $datetime -ItemType Directory -Force
+                Copy-Item -Path "inputs\*" -Destination $datetime -Recurse -Force
+                echo "result=$datetime" >> $GITHUB_OUTPUT
+                
+                Remove-Item -Path ".github" -Recurse -Force
+                Remove-Item -Path "inputs" -Recurse -Force
+                git add .
+                git status
+                git commit -m "Archived inputs to $datetime by $env:GITHUB_ACTOR"
+                git push origin logs/${{ github.ref_name }}
+                git checkout ${{ github.ref_name }}
+                git status
+                
+      
+     
+      
