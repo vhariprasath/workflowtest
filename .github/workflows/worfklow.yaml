@@ -81,6 +81,11 @@ jobs:
                 git checkout ${{ github.ref_name }}
                 git status
 
+      - name: Cleanup
+        if: always()
+        run: Remove-Item * -Recurse -Force
+        
+
       
      
       
