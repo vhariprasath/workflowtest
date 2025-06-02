@@ -49,7 +49,6 @@ jobs:
                 $branchExists = git ls-remote --heads origin logs/master
 
                 if ($branchExists) {
-                    git fetch origin logs/master:logs/master
 
                     git checkout -B logs/master origin/logs/master
                  
