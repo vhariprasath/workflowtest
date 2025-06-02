@@ -46,6 +46,7 @@ jobs:
                 
                 # Switch to the logs branch
                 #git checkout logs/${{ github.ref_name }}
+                git fetch --all
                 $branchExists = git ls-remote --heads origin logs/master
 
                 if ($branchExists) {
